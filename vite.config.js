@@ -15,8 +15,8 @@ export default defineConfig({
         name: 'SÉCURIPF IA',
         short_name: 'SÉCURIPF',
         description: 'Anticiper les ruptures, préserver les choix.',
-        theme_color: '#0f766e',       // couleur de la barre du navigateur
-        background_color: '#ffffff',  // couleur de l'écran de démarrage
+        theme_color: '#145da0',       // couleur de la barre du navigateur
+        background_color: '#f9f9ff',  // couleur de l'écran de démarrage
         display: 'standalone',        // s'ouvre comme une vraie app, sans barre d'URL
         start_url: '/',
         icons: [
