@@ -42,8 +42,7 @@ export default function Dashboard() {
   const anneau = Math.min(100, Math.round((KPI.couvertureMoyenne / 30) * 100))
 
   return (
-    <div className="mx-auto w-full max-w-5xl px-margin lg:px-space-lg pt-space-md pb-space-lg flex flex-col gap-space-md">
-      {/* ===== Bienvenue + alerte prioritaire (côte à côte dès la tablette) ===== */}
+    <div className="w-full px-margin md:px-space-lg xl:px-space-xl pt-space-md pb-space-lg flex flex-col gap-space-md">      {/* ===== Bienvenue + alerte prioritaire (côte à côte dès la tablette) ===== */}
       <div className="grid grid-cols-1 gap-space-md md:grid-cols-2">
         {/* Bienvenue */}
         <div className="relative overflow-hidden rounded-xl bg-surface-container-low p-space-md shadow-sm">
@@ -240,12 +239,11 @@ export default function Dashboard() {
         </div>
 
         {/* Liste des produits (1 colonne sur mobile, 2 dès la tablette) */}
-        <div className="grid grid-cols-1 gap-space-sm md:grid-cols-2 md:gap-space-md mt-1">
-          {produitsAffiches.map((p) => (
+        <div className="grid grid-cols-1 gap-space-sm md:grid-cols-2 xl:grid-cols-3 md:gap-space-md mt-1">          {produitsAffiches.map((p) => (
             <ProductCard key={p.id} produit={p} onAction={(prod) => afficherToast(`${prod.action.libelle} : ${prod.nom}`)} />
           ))}
         </div>
-      </div>
+    </div>
 
       {/* ===== Bandeau réseau d'entraide ===== */}
       <div className="rounded-xl bg-surface-container p-space-md flex items-center gap-space-sm mt-1">
