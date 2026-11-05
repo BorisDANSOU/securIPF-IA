@@ -3,6 +3,7 @@ import { NavLink, Outlet } from 'react-router-dom'
 import Icon from './Icon'
 import useOnline from '../hooks/useOnline'
 import { compterParStatut } from '../data/stocks'
+import { useStocks } from '../data/StockContext'
 import { APP_NAME } from '../lib/config'
 
 // Les 4 destinations de l'espace professionnel (barre de navigation du bas)
@@ -20,7 +21,8 @@ const ONGLETS = [
 export default function AppShell() {
   const enLigne = useOnline()
   const [synchro, setSynchro] = useState(false)
-  const { alertes } = compterParStatut()
+  const { produits } = useStocks()
+  const { alertes } = compterParStatut(produits)
 
   // Simule une synchronisation : l'icône tourne 1 seconde
   const actualiser = () => {

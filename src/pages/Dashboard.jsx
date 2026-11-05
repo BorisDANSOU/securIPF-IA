@@ -3,18 +3,20 @@ import { useNavigate } from 'react-router-dom'
 import Icon from '../components/Icon'
 import ProductCard from '../components/ProductCard'
 import Toast from '../components/Toast'
-import { CENTRE, KPI, PRODUITS, compterParStatut } from '../data/stocks'
+import { CENTRE, KPI, compterParStatut } from '../data/stocks'
+import { useStocks } from '../data/StockContext'
 
 export default function Dashboard() {
   const navigate = useNavigate()
   const [filtre, setFiltre] = useState('tous') // 'tous' | 'alertes' | 'normaux'
   const [toast, setToast] = useState({ message: '', visible: false })
+  const { produits } = useStocks()
 
-  const nb = compterParStatut()
-  const critique = PRODUITS.find((p) => p.statut === 'critique') // produit en alerte prioritaire
+  const nb = compterParStatut(produits)
+  const critique = produits.find((p) => p.statut === 'critique')
 
   // Filtre la liste selon la pastille choisie
-  const produitsAffiches = PRODUITS.filter((p) => {
+  const produitsAffiches = produits.filter((p) => {
     if (filtre === 'alertes') return p.statut !== 'normal'
     if (filtre === 'normaux') return p.statut === 'normal'
     return true

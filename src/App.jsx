@@ -2,6 +2,10 @@ import { Routes, Route, Link } from 'react-router-dom'
 import Accueil from './pages/Accueil'
 import AppShell from './components/AppShell'
 import Dashboard from './pages/Dashboard'
+import StockUpdate from './pages/StockUpdate'
+import AlerteDetail from './pages/AlerteDetail'
+import EspaceJeunes from './pages/EspaceJeunes'
+import StockProvider from './components/StockProvider'
 
 // Écran provisoire pour les pages que l'on construira aux prochaines étapes
 function EnConstruction({ titre }) {
@@ -18,18 +22,20 @@ function EnConstruction({ titre }) {
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Accueil />} />
+    <StockProvider>
+      <Routes>
+        <Route path="/" element={<Accueil />} />
 
-      {/* Espace professionnel : toutes ces pages partagent AppShell (en-tête + navigation) */}
-      <Route path="/centre" element={<AppShell />}>
-        <Route index element={<Dashboard />} />
-        <Route path="stocks" element={<EnConstruction titre="Mise à jour des stocks" />} />
-        <Route path="alertes" element={<EnConstruction titre="Alertes" />} />
-        <Route path="profil" element={<EnConstruction titre="Profil" />} />
-      </Route>
+        {/* Espace professionnel : toutes ces pages partagent AppShell (en-tête + navigation) */}
+        <Route path="/centre" element={<AppShell />}>
+          <Route index element={<Dashboard />} />
+          <Route path="stocks" element={<StockUpdate />} />
+          <Route path="alertes" element={<AlerteDetail />} />
+          <Route path="profil" element={<EnConstruction titre="Profil" />} />
+        </Route>
 
-      <Route path="/jeunes" element={<EnConstruction titre="Espace jeunes" />} />
-    </Routes>
+        <Route path="/jeunes" element={<EspaceJeunes />} />
+      </Routes>
+    </StockProvider>
   )
 }
